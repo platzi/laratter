@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('/', function () {
+//    return 'Hola, Platzi!';
+//});
+
+Route::get('about', function () {
+    return view('about');
+});

@@ -75,7 +75,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel en Platzi
+                    About page!
                 </div>
 
                 <div class="links">
