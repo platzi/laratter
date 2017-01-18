@@ -12,7 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'teacher' => 'Guido Woda',
+        'temas' => [
+            'Rutas',
+            'Blade',
+            'Controladores',
+            'Eloquent',
+            'Y mucho más!',
+        ],
+//        'twitter' => '@guiwoda',
+    ]);
 });
 
 //Route::get('/', function () {
