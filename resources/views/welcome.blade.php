@@ -1,22 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="title m-b-md">
-        Laravel en Platzi
+    <div class="row">
+        <div class="col-12">
+            <h1>Laravel en Platzi</h1>
+        </div>
     </div>
-    <p style="font-size: 2rem">
-        por
-        @if(isset($twitter))
-            <a href="https://twitter.com/{{ $twitter }}">
-                {{ $teacher }}
-            </a>
-        @else
-            {{ $teacher }}
-        @endif
-    </p>
-    <div class="links">
-        @foreach ($temas as $tema)
-            <a href="https://laravel.com">{{ $tema }}</a>
-        @endforeach
+    <div class="row">
+        @forelse($messages as $message)
+            <div class="col-6 col-lg-3">
+                <img class="img-thumbnail" src="{{ $message['image'] }}" alt="{{ $message['content'] }}">
+                <p class="card-text">
+                    {{ $message['content'] }}
+                    <a href="/messages/{{ $message['id'] }}">Leer más</a>
+                </p>
+            </div>
+        @empty
+            <div class="col-12">
+                Oops! No hay mensajes :-(
+            </div>
+        @endforelse
     </div>
 @endsection

@@ -9,14 +9,12 @@ class PagesController extends Controller
     public function home()
     {
         $data = [
-            'teacher' => 'Guido Woda',
-            'twitter' => '@guiwoda',
-            'temas'   => [
-                'Rutas',
-                'Blade',
-                'Controladores',
-                'Eloquent',
-                'Y mucho más!',
+//            'messages' => [],
+            'messages' => [
+                ['id' => 1, 'content' => 'Platzi es lo más!', 'image' => 'http://lorempixel.com/600/338/people/1'],
+                ['id' => 2, 'content' => 'El curso está buenísimo', 'image' => 'http://lorempixel.com/600/338/people/2'],
+                ['id' => 3, 'content' => 'Gracias #Platzi!', 'image' => 'http://lorempixel.com/600/338/people/3'],
+                ['id' => 4, 'content' => 'Todos sigan a @guiwoda en Twitter!', 'image' => 'http://lorempixel.com/600/338/people/4'],
             ],
         ];
 
