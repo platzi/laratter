@@ -20,7 +20,7 @@ class CreateMessagesTable extends Migration
             $table->string('image')->nullable();
             $table->index('created_at');
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
