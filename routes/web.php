@@ -11,24 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', [
-        'teacher' => 'Guido Woda',
-        'temas' => [
-            'Rutas',
-            'Blade',
-            'Controladores',
-            'Eloquent',
-            'Y mucho más!',
-        ],
-//        'twitter' => '@guiwoda',
-    ]);
-});
+Route::get('/', 'PagesController@home');
 
-//Route::get('/', function () {
-//    return 'Hola, Platzi!';
-//});
-
-Route::get('about', function () {
-    return view('about');
-});
+Route::get('about', 'PagesController@aboutUs');

@@ -103,7 +103,7 @@
                     <?php endforeach; ?>
                     <-- Reemplazo por sintaxis de blade -->
                     @foreach ($temas as $tema)
-                    <a href="laravel.com">{{ $tema }}</a>
+                    <a href="https://laravel.com">{{ $tema }}</a>
                     @endforeach
                 </div>
             </div>
