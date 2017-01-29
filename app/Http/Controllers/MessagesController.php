@@ -19,7 +19,7 @@ class MessagesController extends Controller
 
     public function create(CreateMessageRequest $request)
     {
-        dd($request->all());
+//        dd($request->all());
 
 //        $this->validate($request, [
 //            'message' => 'required|max:160',
@@ -27,5 +27,11 @@ class MessagesController extends Controller
 //            'message.required' => 'Escribe un mensaje!',
 //            'message.max' => 'El mensaje no puede ser de más que 160 caracteres.',
 //        ]);
+
+        $created = Message::create([
+            'content' => $request->input('message'),
+        ]);
+
+        return redirect("messages/{$created->id}");
     }
 }
