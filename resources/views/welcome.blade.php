@@ -20,5 +20,8 @@
                 Oops! No hay mensajes :-(
             </div>
         @endforelse
+        @if(count($messages))
+            {{ $messages->links('pagination::simple-bootstrap-4') }}
+        @endif
     </div>
 @endsection
