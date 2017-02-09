@@ -5,32 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel en Platzi</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laratter') }}</title>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 </head>
 <body>
-<div class="container">
-    <div class="jumbotron" style="text-align: center">
-        <h1 class="display-3">Laratter</h1>
-        <p>
+    <div class="container" id="app">
+        <div class="jumbotron" style="text-align: center">
+            <h1 class="display-3">Laratter</h1>
             @include('sections.nav')
-        </p>
-        <p>
-            <form action="/messages/create" method="POST">
-                {{ csrf_field() }}
-                <div class="form-group @if($errors->any()) has-danger @endif">
-                    <input type="text" name="message" class="form-control" placeholder="Qué estás pensando?" value="{{ old('message') }}">
-                    @if($errors->has('message'))
-                        @foreach($errors->get('message') as $error)
-                            <div class="form-control-feedback text-left">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </form>
-        </p>
+        </div>
+        @yield('content')
     </div>
-    @yield('content')
-</div>
 
 @section('js')
 <script src="{{ mix('js/app.js') }}"></script>
