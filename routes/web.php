@@ -21,3 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('{username}', 'UsersController@show');
+
+Route::put('{username}', 'UsersController@follow')->middleware('auth');
+Route::delete('{username}', 'UsersController@unfollow')->middleware('auth');

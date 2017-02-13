@@ -15,4 +15,24 @@ class UsersController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function follow($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        $me = auth()->user();
+
+        $me->follows()->attach($user);
+
+        return back();
+    }
+
+    public function unfollow($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        $me = auth()->user();
+
+        $me->follows()->detach($user);
+
+        return back();
+    }
 }
