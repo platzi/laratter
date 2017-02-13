@@ -9,11 +9,7 @@
     <div class="row">
         @forelse($messages as $message)
             <div class="col-6 col-lg-3">
-                <img class="img-thumbnail" src="{{ $message->image or asset('images/default.png') }}" alt="{{ $message->content }}">
-                <p class="card-text">
-                    {{ $message->content }}
-                    <a href="/messages/{{ $message->id }}">Leer más</a>
-                </p>
+                @include('messages.detail')
             </div>
         @empty
             <div class="col-12">
