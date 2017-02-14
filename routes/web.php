@@ -30,3 +30,6 @@ Route::group(['prefix' => 'auth/{provider}'], function(){
     Route::get('callback', 'SocialAuthController@callback');
     Route::post('register', 'SocialAuthController@register');
 });
+
+Route::post('{username}/dms', 'UsersController@sendMessage');
+Route::get('{username}/dms', 'UsersController@privateMessages');

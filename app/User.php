@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasOne(SocialProfile::class);
     }
 
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class);
+    }
+
     public function isFollowedBy(?User $user)
     {
         return $user !== null && $this->followers->contains($user);
