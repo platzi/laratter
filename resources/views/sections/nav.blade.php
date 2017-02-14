@@ -13,23 +13,19 @@
                 <a class="nav-link {{ Request::is('contact-us') ? 'active' : '' }}" href="/contact-us">Contact us</a>
             </li>
         </ul>
-        @if(Auth::check())
-        <form class="form-inline my-2 my-lg-0 @if($errors->any()) has-danger @endif" action="/messages/create" method="POST">
-            {{ csrf_field() }}
+        <form class="form-inline my-2 my-lg-0 @if($errors->any()) has-danger @endif" action="/messages">
             <div class="input-group my-2 my-sm-0">
-                <input type="text" name="message" class="form-control" placeholder="Qué estás pensando?" value="{{ old('message') }}">
+                <input type="text" name="query" class="form-control" placeholder="Buscar..." value="{{ request('query') }}">
                 <span class="input-group-btn">
                     <button class="btn btn-outline-success" type="submit">🔍</button>
                 </span>
             </div>
-            @if($errors->has('message'))
-                @foreach($errors->get('message') as $error)
+            @if($errors->has('query'))
+                @foreach($errors->get('query') as $error)
                     <div class="form-control-feedback ml-2">{{ $error }}</div>
                 @endforeach
             @endif
         </form>
-        @endif
-
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
             @if (Auth::guest())

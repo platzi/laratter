@@ -26,6 +26,26 @@
             <h1 class="display-3">Laratter</h1>
             @include('sections.nav')
         </div>
+        @if(Auth::check())
+            <div class="row">
+                <div class="col-8 offset-md-2">
+                    <form class="@if($errors->any()) has-danger @endif" action="/messages/create" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" placeholder="Qué estás pensando?" value="{{ old('message') }}" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary float-right" type="submit">Enviar</button>
+                        </div>
+                        @if($errors->has('message'))
+                            @foreach($errors->get('message') as $error)
+                                <div class="form-control-feedback ml-2">{{ $error }}</div>
+                            @endforeach
+                        @endif
+                    </form>
+                </div>
+            </div>
+        @endif
         @yield('content')
     </div>
 
