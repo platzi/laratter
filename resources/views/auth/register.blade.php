@@ -63,4 +63,9 @@
         </form>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @include('auth.social')
+    </div>
+</div>
 @endsection

@@ -24,3 +24,9 @@ Route::get('{username}', 'UsersController@show');
 
 Route::put('{username}', 'UsersController@follow')->middleware('auth');
 Route::delete('{username}', 'UsersController@unfollow')->middleware('auth');
+
+Route::group(['prefix' => 'auth/{provider}'], function(){
+    Route::get('redirect', 'SocialAuthController@redirect');
+    Route::get('callback', 'SocialAuthController@callback');
+    Route::post('register', 'SocialAuthController@register');
+});
