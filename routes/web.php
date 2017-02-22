@@ -34,3 +34,9 @@ Route::group(['prefix' => 'auth/{provider}'], function(){
 
 Route::post('{username}/dms', 'UsersController@sendMessage');
 Route::get('{username}/dms', 'UsersController@privateMessages');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/api/notifications', 'ApiController@notifications');
+    Route::post('/messages/{message}/like', 'ApiController@like');
+    Route::post('/messages/{message}/repost', 'ApiController@repost');
+});

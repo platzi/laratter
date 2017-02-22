@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Conversation::class);
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany(Message::class, 'user_likes');
+    }
+
     public function isFollowedBy(?User $user)
     {
         return $user !== null && $this->followers->contains($user);
