@@ -40,7 +40,9 @@ class MessagesController extends Controller
 //        ]);
 
         $created = Message::create([
+            'user_id' => $request->user()->id,
             'content' => $request->input('message'),
+            'image' => \Faker\Factory::create()->imageUrl(600, 338),
         ]);
 
         return redirect("messages/{$created->id}");

@@ -26,13 +26,14 @@
                 @endforeach
             @endif
         </form>
-        <ul class="navbar-nav ml-auto">
+        <div class="navbar-nav ml-auto">
             <!-- Authentication Links -->
             @if (Auth::guest())
-                <li class="nav-item"><a class="nav-link {{ Request::is('/login') ? 'active' : '' }}" href="{{ url('/login') }}">Login</a></li>
-                <li class="nav-item"><a class="nav-link {{ Request::is('/register') ? 'active' : '' }}" href="{{ url('/register') }}">Register</a></li>
+                <div class="nav-item"><a class="nav-link {{ Request::is('/login') ? 'active' : '' }}" href="{{ url('/login') }}">Login</a></div>
+                <div class="nav-item"><a class="nav-link {{ Request::is('/register') ? 'active' : '' }}" href="{{ url('/register') }}">Register</a></div>
             @else
-                <li class="nav-item dropdown">
+                <notifications></notifications>
+                <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
@@ -44,8 +45,8 @@
                             {{ csrf_field() }}
                         </form>
                     </div>
-                </li>
+                </div>
             @endif
-        </ul>
+        </div>
     </div>
 </nav>

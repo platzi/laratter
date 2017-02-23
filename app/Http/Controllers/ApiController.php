@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Notifications\MessageLiked;
+use App\Notifications\MessageReposted;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -11,12 +13,18 @@ class ApiController extends Controller
     {
         $user = $request->user();
 
-        $liked = $user->likes()->toggle($message);
+        $result = $user->likes()->toggle($message);
+
+        $liked = count($result['attached']) > 0;
+
+        if ($liked) {
+            $message->user->notify(new MessageLiked($user, $message));
+        }
 
         return [
             'user_id' => $user->id,
             'message_id' => $message->id,
-            'liked' =>  count($liked['attached']) > 0,
+            'liked' => $liked,
         ];
     }
 
@@ -34,10 +42,24 @@ class ApiController extends Controller
 
         $reposted = $message->repost($request->user());
 
+        $message->user->notify(new MessageReposted(
+            $request->user(), $message, $reposted)
+        );
+
         return [
             'user_id' => $request->user()->id,
             'message_id' => $message->id,
             'reposted' => true,
+        ];
+    }
+
+    public function notifications(Request $request)
+    {
+        $user = $request->user();
+
+        return [
+            'notifications' => $user->notifications,
+            'user_id' => $user->id,
         ];
     }
 }

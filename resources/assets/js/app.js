@@ -15,6 +15,7 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('message-interactions', require('./components/MessageInteractions.vue'));
+Vue.component('notifications', require('./components/Notifications.vue'));
 
 const app = new Vue({
     el: '#app'
