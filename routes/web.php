@@ -23,6 +23,7 @@ Route::post('/auth/facebook/register', 'SocialAuthController@register');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/messages', 'MessagesController@search');
+Route::get('/messages/{message}/responses', 'MessagesController@responses');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::post('/messages/create', 'MessagesController@create');
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('/{username}/follow', 'UsersController@follow');
 	Route::post('/{username}/unfollow', 'UsersController@unfollow');
+
+	Route::put('/messages/{message}', 'MessagesController@respond');
 });
 
 Route::get('/{username}/follows', 'UsersController@follows');

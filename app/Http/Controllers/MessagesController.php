@@ -40,4 +40,22 @@ class MessagesController extends Controller
             'messages' => $messages,
         ]);
     }
+
+    public function respond(Message $message, Request $request)
+    {
+        $message->responses()->create([
+            'user_id' => $request->user()->id,
+            'content' => $request->input('content'),
+        ]);
+
+        return redirect('/messages/'.$message->id);
+    }
+
+    public function responses(Message $message)
+    {
+        $responses = $message->responses;
+        $responses->load('user');
+
+        return $responses;
+    }
 }
