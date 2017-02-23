@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Scout\Searchable;
 
 class Message extends Model
@@ -50,5 +51,14 @@ class Message extends Model
         }
 
         return $user->messages()->where('parent_id', $this->id)->first();
+    }
+
+    public function getImageAttribute($image)
+    {
+        if (!$image || starts_with($image, 'http')) {
+            return $image;
+        }
+
+        return Storage::disk('public')->url($image);
     }
 }

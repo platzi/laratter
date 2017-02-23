@@ -30,19 +30,12 @@ class MessagesController extends Controller
 
     public function create(CreateMessageRequest $request)
     {
-//        dd($request->all());
-
-//        $this->validate($request, [
-//            'message' => 'required|max:160',
-//        ],[
-//            'message.required' => 'Escribe un mensaje!',
-//            'message.max' => 'El mensaje no puede ser de más que 160 caracteres.',
-//        ]);
+        $image = $request->file('image');
 
         $created = Message::create([
             'user_id' => $request->user()->id,
             'content' => $request->input('message'),
-            'image' => \Faker\Factory::create()->imageUrl(600, 338),
+            'image'   => $image->store('images', 'public'),
         ]);
 
         return redirect("messages/{$created->id}");

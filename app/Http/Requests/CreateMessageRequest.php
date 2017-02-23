@@ -25,6 +25,7 @@ class CreateMessageRequest extends FormRequest
     {
         return [
             'message' => 'required|max:160',
+            'image' => 'required|image'
         ];
     }
 

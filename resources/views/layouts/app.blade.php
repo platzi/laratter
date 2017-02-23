@@ -29,19 +29,30 @@
         @if(Auth::check())
             <div class="row">
                 <div class="col-8 offset-md-2">
-                    <form class="@if($errors->any()) has-danger @endif" action="/messages/create" method="POST">
+                    <form action="/messages/create" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div class="form-group">
+                        <div class="form-group @if($errors->has('message')) has-danger @endif">
                             <textarea name="message" class="form-control" placeholder="Qué estás pensando?" value="{{ old('message') }}" rows="3"></textarea>
+                            @if($errors->has('message'))
+                                @foreach($errors->get('message') as $error)
+                                    <div class="form-control-feedback ml-2">{{ $error }}</div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="form-group @if($errors->has('image')) has-danger @endif">
+                            <label for="image" class="form-control-label">
+                                Imagen
+                            </label>
+                            <input type="file" name="image" class="form-control-file">
+                            @if($errors->has('image'))
+                                @foreach($errors->get('image') as $error)
+                                    <div class="form-control-feedback ml-2">{{ $error }}</div>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary float-right" type="submit">Enviar</button>
                         </div>
-                        @if($errors->has('message'))
-                            @foreach($errors->get('message') as $error)
-                                <div class="form-control-feedback ml-2">{{ $error }}</div>
-                            @endforeach
-                        @endif
                     </form>
                 </div>
             </div>

@@ -12248,7 +12248,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.notifications = data.notifications;
             _this.user_id = data.user_id;
 
-            Echo.private('App.User.' + _this.user_id).notification(_this.notifications.unshift);
+            Echo.private('App.User.' + _this.user_id).notification(function (notification) {
+                _this.notifications.unshift(notification);
+            });
         });
     }
 };
