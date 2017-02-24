@@ -47,9 +47,9 @@
             "php artisan optimize"
         ],
         "compile": [
-            "php artisan storage:link",
             "php artisan migrate --force",
-            "chmod -R 775 storage"
+            "chmod -R 775 storage",
+            "php artisan storage:link"
         ]
     },
     "config": {
