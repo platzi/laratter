@@ -45,6 +45,9 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "heroku-postbuild": [
+            "php artisan migrate"
         ]
     },
     "config": {
