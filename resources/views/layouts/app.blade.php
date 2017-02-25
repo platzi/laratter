@@ -32,9 +32,9 @@
                         <li class="nav-item">
                             <form action="/messages">
                                 <div class="input-group">
-                                    <input type="text" name="query" class="form-control" placeholder="Buscar..." required>
+                                    <input type="text" name="query" class="form-control" placeholder="{{ trans('app.search') }}..." required>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-outline-success">Buscar</button>
+                                        <button class="btn btn-outline-success">@lang('app.search')</button>
                                     </span>
                                 </div>
                             </form>
@@ -43,10 +43,15 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav ml-auto">
+                        @if(App::isLocale('es'))
+                            <a class="nav-link" href="/locale?lang=en">English</a>
+                        @else
+                            <a class="nav-link" href="/locale?lang=es">Español</a>
+                        @endif
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('auth.login') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
